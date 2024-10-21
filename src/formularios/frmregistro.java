@@ -30,7 +30,7 @@ public class frmregistro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtid_cc = new javax.swing.JTextField();
+        txtid = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -51,9 +51,9 @@ public class frmregistro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtid_cc.addActionListener(new java.awt.event.ActionListener() {
+        txtid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtid_ccActionPerformed(evt);
+                txtidActionPerformed(evt);
             }
         });
 
@@ -137,7 +137,7 @@ public class frmregistro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(txtid_cc, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1))
@@ -178,7 +178,7 @@ public class frmregistro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtid_cc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -218,9 +218,9 @@ public class frmregistro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtid_ccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtid_ccActionPerformed
+    private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtid_ccActionPerformed
+    }//GEN-LAST:event_txtidActionPerformed
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
         // TODO add your handling code here:
@@ -232,7 +232,7 @@ public class frmregistro extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String id_cc=txtid_cc.getText();
+        String id=txtid.getText();
         String tipo_documento=txttipo_documento.getText();
         String nombre=txtnombre.getText();
         String apellido=txtapellido.getText();
@@ -242,7 +242,7 @@ public class frmregistro extends javax.swing.JFrame {
         String contrasena=txtcontrasena.getText();
         
         Conexion co = new Conexion();
-        int respuesta = co.RegUsuario(id_cc, tipo_documento, nombre, apellido, fecha_nacimiento, telefono, email, contrasena);
+        int respuesta = co.RegUsuario(id, tipo_documento, nombre, apellido, fecha_nacimiento, telefono, email, contrasena);
         if (respuesta == 1) {
             JOptionPane.showMessageDialog(null, "Usuario registrado correctamente");
         } else {
@@ -252,6 +252,9 @@ public class frmregistro extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        frmlogin frmL= new frmlogin();
+            this.dispose();
+            frmL.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txttipo_documentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttipo_documentoActionPerformed
@@ -324,7 +327,7 @@ public class frmregistro extends javax.swing.JFrame {
     private javax.swing.JTextField txtcontrasena;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtfecha_nacimiento;
-    private javax.swing.JTextField txtid_cc;
+    private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txttelefono;
     private javax.swing.JTextField txttipo_documento;

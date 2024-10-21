@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -31,12 +32,14 @@ public class Conexion {
     }
     
     
-    public int RegUsuario(String id_cc,String tipo_documento,String nombre,String apellido,String fecha_nacimiento,String telefono,String email,String contrasena){
+  
+    
+    public int RegUsuario(String id,String tipo_documento,String nombre,String apellido,String fecha_nacimiento,String telefono,String email,String contrasena){
         int res=0;
         
         try {
-            ps=cn.prepareStatement("insert into usuarios (id_cc,tipo_documento,nombre,apellido,fecha_nacimiento,telefono,email,contrasena) values (?,?,?,?,?,?,?,?);");
-            ps.setString (1, id_cc);
+            ps=cn.prepareStatement("insert into usuarios (id,tipo_documento,nombre,apellido,fecha_nacimiento,telefono,email,contrasena) values (?,?,?,?,?,?,?,?);");
+            ps.setString (1, id);
             ps.setString (2, tipo_documento);
             ps.setString (3, nombre);
             ps.setString (4, apellido);
@@ -54,6 +57,37 @@ public class Conexion {
         }
         return res;
     }  
+    
+    
+    
+    public ArrayList<LoginGetSet> login(String email, String contrasena){
+        ArrayList<LoginGetSet> res= new ArrayList<>();
+        try {
+            ps=cn.prepareStatement("SELECT * FROM usuarios WHERE email=? AND contrasena=?");
+            ps.setString(1, email);
+            ps.setString(2, contrasena);
+            rs=ps.executeQuery();
+            while (rs.next()) {
+                LoginGetSet log = new LoginGetSet();
+                log.setId(rs.getString("id"));
+                log.setTipo_documento(rs.getString("tipo_documento"));
+                log.setNombre(rs.getString("nombre"));
+                log.setApellido(rs.getString("apellido"));
+                log.setFecha_nacimiento(rs.getString("fecha_nacimiento"));
+                log.setTelefono(rs.getString("telefono"));
+                log.setEmail(rs.getString("email"));
+                log.setContrasena(rs.getString("contrasena"));
+                res.add(log);   
+            }
+            if (res.isEmpty()) {
+                System.out.println("Acceso denegado");
+            } else {
+                System.out.println("Login exitoso");
+            }
+        } catch (Exception e) {
+        }
+        return res;
+    }
             
 }
 
